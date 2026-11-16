@@ -1405,3 +1405,114 @@ body { animation: pageIn 0.4s ease; }
   /* Prompt code block — already dark, just fine-tune contrast */
   .prompt-example-text { background: rgba(12, 9, 7, 0.96); color: #e8dfd0; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Layered lesson layout (Nov 2026): brief-first, focus mode,
+   sticky apply rail, role lens, content visuals
+   ═══════════════════════════════════════════════════════════ */
+
+/* focus mode: one lesson (or the completion view) at a time */
+.lesson-section { display: none; }
+.lesson-section.active { display: flex; }
+.completion-section { display: none; }
+.completion-section.active { display: block; }
+
+/* meta chips under the lesson title */
+.lesson-meta-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 18px; }
+.meta-chip {
+  background: var(--color-surface); border: 1px solid var(--color-border-light);
+  border-radius: 999px; padding: 5px 12px;
+  font-size: var(--font-size-xs); color: var(--color-text-muted); line-height: 1.5;
+}
+.meta-chip strong { color: var(--color-text); }
+
+/* why-this-matters intro line */
+.lesson-why {
+  font-size: var(--font-size-base); line-height: 1.7; color: var(--color-text);
+  max-width: 680px; margin-bottom: 22px;
+}
+
+/* 60-second brief */
+.lesson-brief {
+  background: var(--color-accent-bg); border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-lg); padding: 20px 22px; margin-bottom: 26px;
+}
+.brief-label {
+  font-size: var(--font-size-xs); font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--color-accent); margin-bottom: 10px;
+}
+.brief-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
+.brief-list li { font-size: var(--font-size-sm); line-height: 1.6; padding-left: 18px; position: relative; }
+.brief-list li::before {
+  content: '▸'; position: absolute; left: 0; top: 0;
+  color: var(--color-accent); font-weight: 700;
+}
+@media (max-width: 760px) { .brief-list { grid-template-columns: 1fr; } }
+
+/* concepts in two columns */
+.concepts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.concepts-grid .concept-card { margin-bottom: 0; }
+@media (max-width: 760px) { .concepts-grid { grid-template-columns: 1fr; } }
+
+/* role lens switcher */
+.lens-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.lens-chip {
+  border: 1px solid var(--color-border); background: var(--color-bg);
+  border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  font-size: var(--font-size-sm); font-weight: 550; color: var(--color-text);
+}
+.lens-chip.on { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+.lens-panel {
+  background: var(--color-accent-bg); border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius); padding: 14px 16px;
+  font-size: var(--font-size-sm); line-height: 1.65;
+}
+
+/* apply checklist in the rail */
+.apply-steps { margin-top: 12px; display: flex; flex-direction: column; }
+.apply-step {
+  display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+  font-size: var(--font-size-sm); line-height: 1.55;
+  padding: 7px 0; border-top: 1px solid var(--color-border-light);
+}
+.apply-step input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--color-accent); flex: none; }
+.apply-step input:checked + span { color: var(--color-text-muted); text-decoration: line-through; }
+
+/* watch-out list markers */
+.watch-box .watch-list li::before {
+  content: '✕'; background: none; border-radius: 0;
+  width: auto; height: auto; top: 5px;
+  color: #b91c1c; font-size: 11px; font-weight: 700;
+}
+
+/* content visuals (matrix + flow) */
+.lesson-visual-block { margin-bottom: 26px; }
+.visual-title {
+  font-size: var(--font-size-xs); font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--color-accent); margin-bottom: 10px;
+}
+.visual-scroll { overflow-x: auto; border: 1px solid var(--color-border); border-radius: var(--radius); }
+.visual-matrix { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); background: var(--color-bg); }
+.visual-matrix th, .visual-matrix td {
+  border: 1px solid var(--color-border-light); padding: 10px 12px;
+  text-align: left; vertical-align: top; line-height: 1.5;
+}
+.visual-matrix thead th { background: var(--color-surface); font-family: var(--font-heading); font-size: var(--font-size-base); }
+.visual-matrix tbody th { background: var(--color-surface); font-weight: 650; white-space: nowrap; }
+.visual-matrix td strong { display: block; font-weight: 650; }
+.visual-matrix td span { color: var(--color-text-muted); font-size: var(--font-size-xs); }
+.visual-matrix tr.visual-muted td { background: #faf7f2; color: var(--color-text-muted); }
+.visual-note { font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 10px; }
+.visual-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.flow-step {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm); padding: 8px 12px;
+  font-size: var(--font-size-sm); font-weight: 550;
+}
+.flow-arrow { color: var(--color-accent); font-weight: 700; }
+
+/* lesson pager */
+.lesson-pager {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 14px; margin: 28px 0 16px;
+}

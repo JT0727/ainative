@@ -74,20 +74,74 @@
       '</div>';
   }
 
-  function renderRoleVariants(variants) {
-    var roles = [
-      { key: 'manager', label: 'Manager' },
-      { key: 'writer', label: 'Writer' },
-      { key: 'analyst', label: 'Analyst' },
-      { key: 'operator', label: 'Operator' }
-    ];
+  var ROLE_DEFS = [
+    { key: 'manager', label: 'Manager' },
+    { key: 'writer', label: 'Writer' },
+    { key: 'analyst', label: 'Analyst' },
+    { key: 'operator', label: 'Operator' }
+  ];
 
-    return roles.map(function (role) {
-      return '<details class="role-card">' +
-        '<summary class="role-card-label">' + role.label + '</summary>' +
-        '<p>' + escapeHTML(variants[role.key]) + '</p>' +
-        '</details>';
+  function renderRoleVariants(variants) {
+    if (!variants) return '';
+    var chips = ROLE_DEFS.map(function (role, i) {
+      return '<button class="lens-chip' + (i === 0 ? ' on' : '') + '" onclick="CourseActions.setLens(this, \'' + role.key + '\')">' + role.label + '</button>';
     }).join('');
+    var panels = ROLE_DEFS.map(function (role, i) {
+      return '<div class="lens-panel" data-lens-panel="' + role.key + '"' + (i === 0 ? '' : ' hidden') + '>' + escapeHTML(variants[role.key] || '') + '</div>';
+    }).join('');
+    return '<div class="lesson-lens">' +
+      '<div class="lens-chips">' + chips + '</div>' +
+      panels +
+      '</div>';
+  }
+
+  function firstSentence(text) {
+    var clean = String(text).replace(/e\.g\./g, 'e~g~').replace(/i\.e\./g, 'i~e~');
+    var parts = clean.match(/[^.!?]+[.!?]+/g) || [clean];
+    var s = '';
+    for (var i = 0; i < parts.length; i++) {
+      s += parts[i];
+      if (s.trim().length >= 40) break;
+    }
+    s = s.trim().replace(/e~g~/g, 'e.g.').replace(/i~e~/g, 'i.e.');
+    return s.length > 200 ? s.slice(0, 197).trim() + '…' : s;
+  }
+
+  function renderBrief(lesson, lessonNumber) {
+    if (!lesson.coreConcepts || !lesson.coreConcepts.length) return '';
+    var items = lesson.coreConcepts.map(function (c) {
+      return '<li><strong>' + escapeHTML(c.title) + ':</strong> ' + escapeHTML(firstSentence(c.text)) + '</li>';
+    }).join('');
+    return '<div class="lesson-brief" id="lesson-' + lessonNumber + '-brief">' +
+      '<div class="brief-label">The 60-Second Version</div>' +
+      '<ul class="brief-list">' + items + '</ul>' +
+      '</div>';
+  }
+
+  function renderVisual(lesson) {
+    var v = lesson.visual;
+    if (!v) return '';
+    if (v.type === 'matrix' && v.headers && v.rows) {
+      var head = v.headers.map(function (h) { return '<th>' + escapeHTML(h) + '</th>'; }).join('');
+      var rows = v.rows.map(function (row) {
+        var cells = row.cells.map(function (cell) {
+          return '<td><strong>' + escapeHTML(cell.main) + '</strong>' + (cell.sub ? '<span>' + escapeHTML(cell.sub) + '</span>' : '') + '</td>';
+        }).join('');
+        return '<tr' + (row.muted ? ' class="visual-muted"' : '') + '><th>' + escapeHTML(row.label) + '</th>' + cells + '</tr>';
+      }).join('');
+      return '<div class="lesson-visual-block"><div class="visual-title">' + escapeHTML(v.title || 'Visual') + '</div>' +
+        '<div class="visual-scroll"><table class="visual-matrix"><thead><tr>' + head + '</tr></thead><tbody>' + rows + '</tbody></table></div>' +
+        (v.note ? '<p class="visual-note">' + escapeHTML(v.note) + '</p>' : '') + '</div>';
+    }
+    if (v.type === 'flow' && v.steps) {
+      var steps = v.steps.map(function (s, i) {
+        return (i > 0 ? '<span class="flow-arrow">→</span>' : '') + '<span class="flow-step">' + escapeHTML(s) + '</span>';
+      }).join('');
+      return '<div class="lesson-visual-block"><div class="visual-title">' + escapeHTML(v.title || 'Visual') + '</div>' +
+        '<div class="visual-flow">' + steps + '</div>' +
+        (v.note ? '<p class="visual-note">' + escapeHTML(v.note) + '</p>' : '') + '</div>';
+    }
+    return '';
   }
 
   function nextIncompleteLessonNumber() {
@@ -205,10 +259,9 @@
 
   function renderLessonAnchorNav(lessonNumber) {
     return '<div class="lesson-anchor-nav">' +
-      '<a href="#lesson-' + lessonNumber + '-outcome">Outcome</a>' +
+      '<a href="#lesson-' + lessonNumber + '-brief">Brief</a>' +
       '<a href="#lesson-' + lessonNumber + '-concepts">Concepts</a>' +
-      '<a href="#lesson-' + lessonNumber + '-example">Example</a>' +
-      '<a href="#lesson-' + lessonNumber + '-action">Action</a>' +
+      '<a href="#lesson-' + lessonNumber + '-action">Apply</a>' +
       '<a href="#lesson-' + lessonNumber + '-watch">Watch For</a>' +
       '</div>';
   }
@@ -241,42 +294,40 @@
         '<button class="lesson-bookmark-btn' + (bookmarkState ? ' active' : '') + '" data-lesson-bookmark="' + idx + '" onclick="CourseActions.toggleBookmark(this, ' + idx + ')" aria-label="Save lesson for review later">' + (bookmarkState ? 'Saved' : 'Review Later') + '</button>' +
         '</div>' +
         (lesson.subtitle ? '<p class="lesson-subtitle">' + escapeHTML(lesson.subtitle) + '</p>' : '') +
-        renderLessonAnchorNav(lessonNumber) +
-        '<div class="lesson-content">' +
-        '<div class="lesson-use-when" id="lesson-' + lessonNumber + '-outcome"><strong>Use this when:</strong> ' + escapeHTML(lesson.useWhen || lesson.subtitle) + '</div>' +
-        '<div class="lesson-objective">Outcome: ' + escapeHTML(lesson.objective) + '</div>' +
-        '<div class="lesson-estimate">Estimated lesson time: ' + escapeHTML(lesson.estimatedMinutes) + ' minutes</div>' +
-        '<div class="lesson-sequence-note"><strong>Why this lesson is here:</strong> ' + escapeHTML(lesson.sequenceRationale) + '</div>' +
-        '<div class="lesson-block">' +
-        '<h3>Why This Matters</h3>' +
-        '<p>' + escapeHTML(lesson.whyItMatters) + '</p>' +
+        '<div class="lesson-meta-chips">' +
+        '<span class="meta-chip">⏱ ' + escapeHTML(lesson.estimatedMinutes) + ' minutes</span>' +
+        '<span class="meta-chip"><strong>Use when:</strong> ' + escapeHTML(lesson.useWhen || '') + '</span>' +
+        '<span class="meta-chip"><strong>Outcome:</strong> ' + escapeHTML(lesson.objective) + '</span>' +
         '</div>' +
+        renderLessonAnchorNav(lessonNumber) +
+        '<div class="lesson-why"><strong>Why this matters:</strong> ' + escapeHTML(lesson.whyItMatters) + '</div>' +
+        renderBrief(lesson, lessonNumber) +
+        renderVisual(lesson) +
         '<div class="lesson-block" id="lesson-' + lessonNumber + '-concepts">' +
         '<h3>Core Concepts</h3>' +
-        renderConcepts(lesson.coreConcepts) +
+        '<div class="concepts-grid">' + renderConcepts(lesson.coreConcepts) + '</div>' +
         '</div>' +
-        '<div class="lesson-block" id="lesson-' + lessonNumber + '-example">' +
-        '<h3>Worked Example</h3>' +
-        '<div class="worked-example">' +
-        '<p><strong>Scenario:</strong> ' + escapeHTML(lesson.workedExample.scenario) + '</p>' +
-        '<p><strong>Approach:</strong> ' + escapeHTML(lesson.workedExample.approach) + '</p>' +
-        '<p><strong>Result:</strong> ' + escapeHTML(lesson.workedExample.result) + '</p>' +
-        '<p><strong>Verification:</strong> ' + escapeHTML(lesson.workedExample.verification) + '</p>' +
+        '<div class="lesson-block">' +
+        '<h3>Your Lens</h3>' +
+        renderRoleVariants(lesson.roleVariants) +
         '</div>' +
-        '</div>' +
-        '<div class="lesson-block" id="lesson-' + lessonNumber + '-watch">' +
-        '<h3>What To Watch For</h3>' +
-        renderList(lesson.commonMistakes) +
-        '</div>' +
-        '</div>' +
-        '<div class="lesson-nav-between">' +
-        (lessonNumber > 1 ? '<button class="lesson-scroll-btn" onclick="CourseActions.scrollTo(' + (lessonNumber - 1) + ')">↑ Previous Lesson</button>' : '') +
+        '<div class="lesson-pager">' +
+        (lessonNumber > 1 ? '<button class="lesson-scroll-btn" onclick="CourseActions.scrollTo(' + (lessonNumber - 1) + ')">↑ Previous Lesson</button>' : '<span></span>') +
         (!isLast ? '<button class="lesson-scroll-btn" onclick="CourseActions.scrollTo(' + (lessonNumber + 1) + ')">Next Lesson ↓</button>' : '<button class="lesson-scroll-btn" onclick="CourseActions.scrollTo(\'completion\')">View Progress ↓</button>') +
         '</div>' +
         '<button class="lesson-complete-btn' + (isDone ? ' done' : '') + '" data-lesson="' + idx + '" onclick="CourseActions.markComplete(this, ' + idx + ')">' +
         (isDone ? 'Completed' : 'Mark Complete') + '</button>' +
         '</div>' +
         '<div class="lesson-visual" data-animate="fade-up" data-delay="200">' +
+        (lesson.doThisNow ? '<div class="try-it-box action-box" id="lesson-' + lessonNumber + '-action">' +
+          '<div class="try-it-label">Apply It · ' + escapeHTML(lesson.doThisNow.timebox) + '</div>' +
+          '<div class="try-it-text"><strong>' + escapeHTML(lesson.doThisNow.task) + '</strong></div>' +
+          '<div class="apply-steps">' +
+          lesson.doThisNow.steps.map(function (step) {
+            return '<label class="apply-step"><input type="checkbox"> <span>' + escapeHTML(step) + '</span></label>';
+          }).join('') +
+          '</div>' +
+          '</div>' : '') +
         (lesson.artifact ? '<div class="try-it-box artifact-box">' +
           '<div class="try-it-head">' +
           '<div><div class="try-it-label">' + escapeHTML(lesson.artifact.label) + '</div><div class="try-it-text"><strong>' + escapeHTML(lesson.artifact.title) + '</strong></div></div>' +
@@ -284,11 +335,10 @@
           '</div>' +
           renderList(lesson.artifact.items, 'artifact-list') +
           '</div>' : '') +
-        (lesson.doThisNow ? '<div class="try-it-box action-box" id="lesson-' + lessonNumber + '-action">' +
-          '<div class="try-it-label">Do This Now · ' + escapeHTML(lesson.doThisNow.timebox) + '</div>' +
-          '<div class="try-it-text"><strong>' + escapeHTML(lesson.doThisNow.task) + '</strong></div>' +
-          renderList(lesson.doThisNow.steps) +
-          '</div>' : '') +
+        '<div class="try-it-box watch-box" id="lesson-' + lessonNumber + '-watch">' +
+        '<div class="try-it-label">Watch Out</div>' +
+        renderList(lesson.commonMistakes, 'watch-list') +
+        '</div>' +
         (lesson.promptExample ? '<div class="try-it-box prompt-example-box">' +
           '<div class="try-it-head">' +
           '<div><div class="try-it-label">Prompt Example</div><div class="try-it-text"><strong>' + escapeHTML(lesson.promptExample.title) + '</strong></div></div>' +
@@ -297,10 +347,6 @@
           '<pre class="prompt-example-text">' + escapeHTML(promptText) + '</pre>' +
           (lesson.promptExample.note ? '<div class="prompt-example-note">' + escapeHTML(lesson.promptExample.note) + '</div>' : '') +
           '</div>' : '') +
-        '<div class="lesson-meta-card">' +
-        '<div class="try-it-label">Role Variants</div>' +
-        '<div class="role-grid">' + renderRoleVariants(lesson.roleVariants) + '</div>' +
-        '</div>' +
         '<div class="lesson-meta-card">' +
         '<div class="try-it-label">Review Notes</div>' +
         '<div class="lesson-meta-line"><strong>Last reviewed:</strong> ' + escapeHTML(lesson.lastReviewed) + '</div>' +
@@ -431,19 +477,54 @@
     });
   }
 
-  function initLessonObserver() {
+  function showLesson(lessonNumber) {
     var sections = document.querySelectorAll('.lesson-section');
-    if (!sections.length) return;
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var id = entry.target.id;
-          var num = parseInt(id.replace('lesson-', ''), 10) - 1;
-          updateActiveDot(num);
-        }
-      });
-    }, { threshold: 0.35 });
-    sections.forEach(function (section) { observer.observe(section); });
+    sections.forEach(function (section) {
+      section.classList.toggle('active', section.id === 'lesson-' + lessonNumber);
+    });
+    var completion = document.getElementById('completion');
+    if (completion) completion.classList.remove('active');
+    updateActiveDot(lessonNumber - 1);
+  }
+
+  function showCompletion() {
+    var sections = document.querySelectorAll('.lesson-section');
+    sections.forEach(function (section) { section.classList.remove('active'); });
+    var completion = document.getElementById('completion');
+    if (completion) completion.classList.add('active');
+  }
+
+  function showView(target) {
+    if (target === 'completion') {
+      showCompletion();
+    } else {
+      showLesson(target);
+    }
+    var container = document.getElementById('lessonsContainer');
+    if (container) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function initialView() {
+    var hash = window.location.hash || '';
+    var m = hash.match(/^#lesson-(\d+)$/);
+    if (m) {
+      var n = parseInt(m[1], 10);
+      if (n >= 1 && n <= lessonCount) return n;
+    }
+    if (hash === '#completion') return 'completion';
+    if (countDone() === lessonCount) return 'completion';
+    return nextIncompleteLessonNumber();
+  }
+
+  function onHashChange() {
+    var hash = window.location.hash || '';
+    var m = hash.match(/^#lesson-(\d+)$/);
+    if (m) {
+      var n = parseInt(m[1], 10);
+      if (n >= 1 && n <= lessonCount && n !== currentLessonNumber) showLesson(n);
+    } else if (hash === '#completion') {
+      showCompletion();
+    }
   }
 
   function init() {
@@ -466,8 +547,10 @@
     renderLessons();
     renderCompletion();
     renderLessonIndicator();
-    initLessonObserver();
-    Progress.setLastVisited(scopeKind, scopeId, 1, getPagePath(1));
+    var startView = initialView();
+    if (startView === 'completion') showCompletion(); else showLesson(startView);
+    window.addEventListener('hashchange', onHashChange);
+    Progress.setLastVisited(scopeKind, scopeId, currentLessonNumber, getPagePath(currentLessonNumber));
   }
 
   window.CourseActions = {
@@ -495,8 +578,21 @@
     },
 
     scrollTo: function (target) {
-      var el = typeof target === 'string' ? document.getElementById(target) : document.getElementById('lesson-' + target);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      showView(target);
+      try {
+        history.replaceState(null, '', target === 'completion' ? '#completion' : '#lesson-' + target);
+      } catch (e) { /* hash update is best-effort */ }
+    },
+
+    setLens: function (btn, role) {
+      var lens = btn.closest ? btn.closest('.lesson-lens') : null;
+      if (!lens) return;
+      lens.querySelectorAll('.lens-chip').forEach(function (chip) {
+        chip.classList.toggle('on', chip === btn);
+      });
+      lens.querySelectorAll('.lens-panel').forEach(function (panel) {
+        panel.hidden = panel.getAttribute('data-lens-panel') !== role;
+      });
     },
 
     toggleBookmark: function (btn, idx) {
