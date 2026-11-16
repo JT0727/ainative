@@ -88,7 +88,7 @@
       "coreConcepts": [
         {
           "title": "Personal Assistant Framing",
-          "text": "OpenClaw presents itself as a personal AI assistant rather than only a chat bot, emphasizing actions, memory, and connected workflows."
+          "text": "OpenClaw presents itself as a personal AI assistant rather than only a chat bot, emphasizing actions, memory, and connected workflows. Since early 2026 it has been stewarded by the nonprofit OpenClaw Foundation and became the most widely adopted open-source agent, which makes it a useful reference point for the whole category."
         },
         {
           "title": "One Example, Not The Whole Market",
@@ -135,10 +135,10 @@
         "operator": "Focus on workflow change and training, not just tool access."
       },
       "sourceNotes": [
-        "Reviewed against the OpenClaw homepage positioning on March 28, 2026.",
+        "Reviewed against the OpenClaw homepage and OpenClaw Foundation materials on November 15, 2026.",
         "Keep product claims general unless they are re-checked during the next review cycle."
       ],
-      "lastReviewed": "March 2026",
+      "lastReviewed": "November 2026",
       "resources": [
         {
           "title": "OpenClaw official site",
@@ -393,7 +393,7 @@
         },
         {
           "title": "Limit Access",
-          "text": "Start with the minimum systems and permissions needed to learn something useful."
+          "text": "Start with the minimum systems and permissions needed to learn something useful. That includes add-ons: in 2026, malicious third-party skills were found in OpenClaw's ClawHub registry, so treat every skill or plugin as untrusted code until it has been vetted."
         },
         {
           "title": "Review Every Output",
@@ -440,7 +440,7 @@
         "Reviewed for business IC relevance and durable workflow guidance.",
         "Keep verification and organizational policy checks explicit in future revisions."
       ],
-      "lastReviewed": "March 2026"
+      "lastReviewed": "November 2026"
     }
   ],
   "resources": [

@@ -60,6 +60,11 @@
   ],
   "recentUpdates": [
     {
+      "date": "November 2026",
+      "title": "Tools, glossary, and agents refresh",
+      "summary": "Tool references updated to the current model families (GPT-6, Claude 5.5, Gemini 4), the glossary now reflects million-token context windows, and the OpenClaw bonus lessons cover the OpenClaw Foundation and the ClawHub skills-security incidents."
+    },
+    {
       "date": "March 2026",
       "title": "Structured content source introduced",
       "summary": "The curriculum now builds from split JSON source files with validation instead of being maintained only as one large runtime JS file."

@@ -2,13 +2,13 @@
 
 The maintained curriculum now lives in split source files under:
 
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/program.json`
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/modules/`
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/bonus/`
+- `content/program.json`
+- `content/modules/`
+- `content/bonus/`
 
 The frontend runtime artifact is generated into:
 
-- `/Users/jarrod/Desktop/AINative/ai-native-site/js/courses.js`
+- `js/courses.js`
 
 Use these commands after content edits:
 
@@ -26,8 +26,8 @@ Key expectations:
 
 Supporting docs:
 
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/CONTENT_MODEL.md`
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/EDITORIAL_CHECKLIST.md`
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/EDITORIAL_WORKFLOW.md`
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/RELEASE_CHECKLIST.md`
-- `/Users/jarrod/Desktop/AINative/ai-native-site/content/CHANGELOG.md`
+- `content/CONTENT_MODEL.md`
+- `content/EDITORIAL_CHECKLIST.md`
+- `content/EDITORIAL_WORKFLOW.md`
+- `content/RELEASE_CHECKLIST.md`
+- `content/CHANGELOG.md`

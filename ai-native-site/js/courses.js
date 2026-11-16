@@ -87,6 +87,11 @@ var PROGRAM_META = {
   ],
   "recentUpdates": [
     {
+      "date": "November 2026",
+      "title": "Tools, glossary, and agents refresh",
+      "summary": "Tool references updated to the current model families (GPT-6, Claude 5.5, Gemini 4), the glossary now reflects million-token context windows, and the OpenClaw bonus lessons cover the OpenClaw Foundation and the ClawHub skills-security incidents."
+    },
+    {
       "date": "March 2026",
       "title": "Structured content source introduced",
       "summary": "The curriculum now builds from split JSON source files with validation instead of being maintained only as one large runtime JS file."
@@ -8084,7 +8089,7 @@ var BONUS_SECTIONS = {
         "coreConcepts": [
           {
             "title": "Personal Assistant Framing",
-            "text": "OpenClaw presents itself as a personal AI assistant rather than only a chat bot, emphasizing actions, memory, and connected workflows."
+            "text": "OpenClaw presents itself as a personal AI assistant rather than only a chat bot, emphasizing actions, memory, and connected workflows. Since early 2026 it has been stewarded by the nonprofit OpenClaw Foundation and became the most widely adopted open-source agent, which makes it a useful reference point for the whole category."
           },
           {
             "title": "One Example, Not The Whole Market",
@@ -8131,10 +8136,10 @@ var BONUS_SECTIONS = {
           "operator": "Focus on workflow change and training, not just tool access."
         },
         "sourceNotes": [
-          "Reviewed against the OpenClaw homepage positioning on March 28, 2026.",
+          "Reviewed against the OpenClaw homepage and OpenClaw Foundation materials on November 15, 2026.",
           "Keep product claims general unless they are re-checked during the next review cycle."
         ],
-        "lastReviewed": "March 2026",
+        "lastReviewed": "November 2026",
         "resources": [
           {
             "title": "OpenClaw official site",
@@ -8409,7 +8414,7 @@ var BONUS_SECTIONS = {
           },
           {
             "title": "Limit Access",
-            "text": "Start with the minimum systems and permissions needed to learn something useful."
+            "text": "Start with the minimum systems and permissions needed to learn something useful. That includes add-ons: in 2026, malicious third-party skills were found in OpenClaw's ClawHub registry, so treat every skill or plugin as untrusted code until it has been vetted."
           },
           {
             "title": "Review Every Output",
@@ -8456,7 +8461,7 @@ var BONUS_SECTIONS = {
           "Reviewed for business IC relevance and durable workflow guidance.",
           "Keep verification and organizational policy checks explicit in future revisions."
         ],
-        "lastReviewed": "March 2026",
+        "lastReviewed": "November 2026",
         "promptExample": {
           "title": "Starter prompt",
           "prompt": "Help me with this work task: Draft a first-pass pilot brief for OpenClaw or another agent you are considering.\n\nGoal:\nDesign a safe first experiment with an agent-style tool.\n\nUse this when:\nUse this when you want to test OpenClaw or another agent safely for the first time.\n\nImportant context:\n- One bounded workflow\n- Minimum tool access\n- Required manual approval\n- Short review window\n\nPlease structure the response around:\n- Choose A Bounded Task\n- Limit Access\n- Review Every Output\n\nWorkflow requirements:\n- Choose one low-consequence workflow and define the output.\n- List the minimum systems and permissions required.\n- Write the stop rule and the human approval point before any outbound action.\n\nBefore you finish, include a verification checklist based on this rule:\nAfter a few runs, they review where the agent helped, where it drifted, and what access should still remain off-limits.",
@@ -8478,6 +8483,6 @@ var BONUS_SECTIONS = {
         "note": "Useful reference for approval points, prompt injection risk, and guardrails in agent workflows."
       }
     ],
-    "lastReviewed": "March 2026"
+    "lastReviewed": "November 2026"
   }
 };
