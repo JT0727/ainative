@@ -516,6 +516,27 @@
     return nextIncompleteLessonNumber();
   }
 
+  function onKeyNav(event) {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    var target = event.target;
+    if (target) {
+      var tag = target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target.isContentEditable) return;
+    }
+    var completion = document.getElementById('completion');
+    var onCompletion = completion && completion.classList.contains('active');
+    if (event.key === 'ArrowRight') {
+      if (onCompletion) return;
+      window.CourseActions.scrollTo(currentLessonNumber < lessonCount ? currentLessonNumber + 1 : 'completion');
+    } else {
+      if (onCompletion) window.CourseActions.scrollTo(lessonCount);
+      else if (currentLessonNumber > 1) window.CourseActions.scrollTo(currentLessonNumber - 1);
+      else return;
+    }
+    event.preventDefault();
+  }
+
   function onHashChange() {
     var hash = window.location.hash || '';
     var m = hash.match(/^#lesson-(\d+)$/);
@@ -550,6 +571,7 @@
     var startView = initialView();
     if (startView === 'completion') showCompletion(); else showLesson(startView);
     window.addEventListener('hashchange', onHashChange);
+    window.addEventListener('keydown', onKeyNav);
     Progress.setLastVisited(scopeKind, scopeId, currentLessonNumber, getPagePath(currentLessonNumber));
   }
 

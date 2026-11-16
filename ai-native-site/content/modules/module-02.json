@@ -69,7 +69,56 @@
         "Reviewed for business IC relevance and durable workflow guidance.",
         "Keep verification and organizational policy checks explicit in future revisions."
       ],
-      "lastReviewed": "March 2026"
+      "lastReviewed": "March 2026",
+      "visual": {
+        "type": "matrix",
+        "title": "Three Tool Types, Three Strengths",
+        "headers": [
+          "Type",
+          "Best at",
+          "Works when"
+        ],
+        "rows": [
+          {
+            "label": "General assistants",
+            "cells": [
+              {
+                "main": "Drafting and structured thinking",
+                "sub": "summarizing, outlining"
+              },
+              {
+                "main": "You provide the needed context"
+              }
+            ]
+          },
+          {
+            "label": "Research-oriented",
+            "cells": [
+              {
+                "main": "Freshness and source visibility",
+                "sub": "recent info, link tracing"
+              },
+              {
+                "main": "Freshness matters more than drafting flexibility"
+              }
+            ]
+          },
+          {
+            "label": "Embedded AI",
+            "cells": [
+              {
+                "main": "Work in your existing stack",
+                "sub": "email, docs, chat"
+              },
+              {
+                "main": "Access is the advantage",
+                "sub": "the context already lives there"
+              }
+            ]
+          }
+        ],
+        "note": "Pick the type by the task in front of you — not by which tool happens to be familiar."
+      }
     },
     {
       "id": "module-02-lesson-02",

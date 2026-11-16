@@ -184,6 +184,13 @@ ul { list-style: none; }
   font-size: var(--font-size-xs); color: var(--color-text-muted);
   margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em;
 }
+.hero-bonus-note {
+  margin-top: 14px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  max-width: 520px;
+}
+
 .hero-resume-meta {
   margin-top: 18px;
   font-size: var(--font-size-sm);

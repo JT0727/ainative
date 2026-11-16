@@ -339,7 +339,17 @@
         "Reviewed for business IC relevance and durable workflow guidance.",
         "Keep verification and organizational policy checks explicit in future revisions."
       ],
-      "lastReviewed": "March 2026"
+      "lastReviewed": "March 2026",
+      "visual": {
+        "type": "flow",
+        "title": "The Daily Loop",
+        "steps": [
+          "Frame — task, audience, constraints",
+          "Generate — structured first pass",
+          "Review — verify, adjust, finalize"
+        ],
+        "note": "Three steps, same order, every task — the repetition is the pattern."
+      }
     }
   ],
   "outcomes": [

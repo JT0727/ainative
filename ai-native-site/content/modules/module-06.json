@@ -334,7 +334,17 @@
         "Reviewed for business IC relevance and durable workflow guidance.",
         "Keep verification and organizational policy checks explicit in future revisions."
       ],
-      "lastReviewed": "March 2026"
+      "lastReviewed": "March 2026",
+      "visual": {
+        "type": "flow",
+        "title": "The Research Workflow",
+        "steps": [
+          "Collect — gather and label sources",
+          "Synthesize — structured comparison or action summary",
+          "Critique — challenge weak spots, verify critical claims"
+        ],
+        "note": "Skip the critique and the workflow just produces confident summaries — the last step is where the decisions get safer."
+      }
     }
   ],
   "outcomes": [

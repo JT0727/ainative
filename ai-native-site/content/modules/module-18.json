@@ -135,7 +135,59 @@
         "Reviewed for business IC relevance and durable workflow guidance.",
         "Keep verification and organizational policy checks explicit in future revisions."
       ],
-      "lastReviewed": "March 2026"
+      "lastReviewed": "March 2026",
+      "visual": {
+        "type": "matrix",
+        "title": "Sort Every Task Into One Of Three Buckets",
+        "headers": [
+          "Class",
+          "Task shape",
+          "The move"
+        ],
+        "rows": [
+          {
+            "label": "Automate",
+            "cells": [
+              {
+                "main": "Bounded repetition",
+                "sub": "low risk, clear review path"
+              },
+              {
+                "main": "Hand it off",
+                "sub": "AI runs the sequence"
+              }
+            ]
+          },
+          {
+            "label": "Augment",
+            "cells": [
+              {
+                "main": "Judgment-heavy work",
+                "sub": "decisions stay human"
+              },
+              {
+                "main": "Support it",
+                "sub": "AI drafts, human decides"
+              }
+            ]
+          },
+          {
+            "label": "Avoid",
+            "muted": true,
+            "cells": [
+              {
+                "main": "High-risk, low-clarity",
+                "sub": "sensitive, ambiguous, hard to review"
+              },
+              {
+                "main": "Keep it manual",
+                "sub": "not the right first move for AI"
+              }
+            ]
+          }
+        ],
+        "note": "Most work lands in the middle bucket: augment first, and automate only what proves bounded and reviewable."
+      }
     },
     {
       "id": "module-18-lesson-03",
