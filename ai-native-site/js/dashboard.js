@@ -18,6 +18,7 @@
   function init() {
     updateProgressRing();
     updateHeroStats();
+    updateBonusCounts();
     updateAllCards();
     updateContinueBtn();
     renderPhaseProgress();
@@ -48,6 +49,26 @@
     var lessDone = document.getElementById('statLessons');
     if (modsDone) modsDone.textContent = Progress.totalModulesDone() + '/' + TOTAL_MODULES;
     if (lessDone) lessDone.textContent = Progress.totalLessonsDone() + '/' + TOTAL_LESSONS;
+  }
+
+  function updateBonusCounts() {
+    if (typeof BONUS_SECTIONS === 'undefined') return;
+    var bonusTotal = 0;
+    var sectionCount = 0;
+    Object.keys(BONUS_SECTIONS).forEach(function (id) {
+      var section = BONUS_SECTIONS[id];
+      if (!section || !section.lessons) return;
+      bonusTotal += section.lessons.length;
+      sectionCount++;
+      document.querySelectorAll('[data-bonus-count="' + id + '"]').forEach(function (el) {
+        el.textContent = section.lessons.length + ' lessons';
+      });
+    });
+    var note = document.getElementById('statBonus');
+    if (note && bonusTotal) {
+      note.textContent = 'Plus ' + bonusTotal + ' bonus lessons in ' + sectionCount +
+        ' bonus sections — ' + (TOTAL_LESSONS + bonusTotal) + ' lessons in total.';
+    }
   }
 
   function updateAllCards() {

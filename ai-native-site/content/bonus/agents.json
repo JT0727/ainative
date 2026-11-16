@@ -520,7 +520,20 @@
           "type": "reference",
           "note": "Side-by-side comparison of the hosted and self-hosted proactive agents on triggers, hosting, credentials, and price."
         }
-      ]
+      ],
+      "visual": {
+        "type": "flow",
+        "title": "How A Proactive Run Works",
+        "steps": [
+          "Trigger — schedule, event, or self-wake",
+          "Agent wakes — no message from you",
+          "Works the task",
+          "Permission check at the boundary",
+          "Acts or reports",
+          "Or stays quiet — NO_REPLY"
+        ],
+        "note": "Starting on its own is the whole point — and quiet is a valid ending: a run with nothing worth saying ends in NO_REPLY, not noise."
+      }
     },
     {
       "id": "agents-lesson-08",
