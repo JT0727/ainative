@@ -24,7 +24,8 @@
   }
 
   function getPagePath(lessonNumber) {
-    var base = bonusId ? 'agents-in-practice.html' : 'module-' + moduleNum + '.html';
+    var BONUS_PAGES = { agents: 'agents-in-practice.html', models: 'model-landscape.html', github: 'github-essentials.html' };
+    var base = bonusId ? (BONUS_PAGES[bonusId] || 'agents-in-practice.html') : 'module-' + moduleNum + '.html';
     var prefix = bonusId ? '' : '';
     if (!lessonNumber) return base;
     return base + '#lesson-' + lessonNumber;

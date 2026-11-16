@@ -81,7 +81,7 @@
     <div class="phase-header" data-animate="fade-up">
       <div class="phase-label"><span class="phase-number">00</span> How To Use This Program</div>
       <h2 class="phase-title">Learn In Order, Practice On Real Work</h2>
-      <p class="phase-description">Use the core 21 modules as a guided path. Move in sequence, test each lesson on live work, and use the bonus agent section only after the core workflow habits are in place.</p>
+      <p class="phase-description">Use the core 21 modules as a guided path. Move in sequence, test each lesson on live work, and use the bonus sections only after the core workflow habits are in place.</p>
     </div>
     <div class="guide-grid">
       <div class="guide-card" data-animate="fade-up" data-delay="100">
@@ -506,7 +506,63 @@
         <div class="module-card-subtitle">Compare agent-style tools by workflow fit, oversight, tool reach, and review burden instead of by hype.</div>
         <div class="module-card-progress">
           <div class="module-card-bar"><div class="module-card-bar-fill" style="width:0%"></div></div>
-          <div class="module-card-pct">6 lessons</div>
+          <div class="module-card-pct">8 lessons</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="phase-section bonus-section" id="bonus-models">
+  <div class="container">
+    <div class="phase-header phase-header--split" data-animate="fade-up">
+      <div class="phase-header-main">
+        <div class="phase-label"><span class="phase-number">B2</span> Bonus Section</div>
+        <h2 class="phase-title">The 2026 Model Landscape</h2>
+        <p class="phase-description">The current model map — GPT-6, Claude, and Gemini families and their tiers — plus open-weight versus closed models and a hype-proof way to read the next launch.</p>
+      </div>
+      <ul class="phase-outcomes">
+        <li>Use this when a tool asks you to pick a model, or a launch makes the team want to switch.</li>
+        <li>Families and tiers are the durable knowledge; version numbers are not.</li>
+      </ul>
+    </div>
+    <div class="module-grid bonus-grid">
+      <a href="model-landscape.html" class="module-card bonus-card" id="card-bonus-models" data-animate="fade-up" data-delay="100">
+        <div class="module-card-tag">Bonus</div>
+        <div class="module-card-num">Model Field Guide</div>
+        <div class="module-card-title">The 2026 Model Landscape</div>
+        <div class="module-card-subtitle">Place any current model by vendor, family, and tier — and decide open versus closed on constraints, not hype.</div>
+        <div class="module-card-progress">
+          <div class="module-card-bar"><div class="module-card-bar-fill" style="width:0%"></div></div>
+          <div class="module-card-pct">3 lessons</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="phase-section bonus-section" id="bonus-github">
+  <div class="container">
+    <div class="phase-header phase-header--split" data-animate="fade-up">
+      <div class="phase-header-main">
+        <div class="phase-label"><span class="phase-number">B3</span> Bonus Section</div>
+        <h2 class="phase-title">GitHub For Non-Engineers</h2>
+        <p class="phase-description">How GitHub works and how engineers use it every day — repositories, commits, branches, pull requests, reviews, and releases — and how to participate usefully without writing code.</p>
+      </div>
+      <ul class="phase-outcomes">
+        <li>Use this when an engineer sends you a GitHub link, or a change you requested seems stuck.</li>
+        <li>The repo is the source of truth: scope, discussion, and approval live in the pull request.</li>
+      </ul>
+    </div>
+    <div class="module-grid bonus-grid">
+      <a href="github-essentials.html" class="module-card bonus-card" id="card-bonus-github" data-animate="fade-up" data-delay="100">
+        <div class="module-card-tag">Bonus</div>
+        <div class="module-card-num">Engineering Fluency</div>
+        <div class="module-card-title">GitHub For Non-Engineers</div>
+        <div class="module-card-subtitle">Read the daily engineering loop — issues, PRs, checks, releases — and contribute where your judgment is the gate.</div>
+        <div class="module-card-progress">
+          <div class="module-card-bar"><div class="module-card-bar-fill" style="width:0%"></div></div>
+          <div class="module-card-pct">3 lessons</div>
         </div>
       </a>
     </div>
@@ -535,6 +591,11 @@
         <div class="glossary-item">
           <div class="glossary-term">Agent</div>
           <div class="glossary-def">An AI system that can plan and take actions autonomously, using tools like web search or code execution to complete multi-step tasks with minimal oversight.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Agent harness</div>
+          <div class="glossary-def">The software around a model that turns it into an agent: the loop that calls the model step by step, its tools, context and memory management, and its permission rules. Agent = model + harness — the same model behaves very differently in different harnesses.</div>
         </div>
 
         <div class="glossary-item">
@@ -595,6 +656,11 @@
         <div class="glossary-item">
           <div class="glossary-term">Multimodal</div>
           <div class="glossary-def">AI systems that can process multiple input types—text, images, audio, or video—in a single model. GPT-6, Claude, and Gemini are all multimodal models.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Open-weight model</div>
+          <div class="glossary-def">A model whose weights are published for download under a license, so it can be run on your own infrastructure (e.g., Kimi, DeepSeek). Not the same as open source — training data and code are usually not included.</div>
         </div>
 
         <div class="glossary-item">
@@ -925,6 +991,8 @@ Note any trade-offs I should think through before deciding.</div>
         <a href="prompt-library.html">Prompt Library</a>
         <a href="tools.html">Tools &amp; Resources</a>
         <a href="agents-in-practice.html">Agents</a>
+        <a href="model-landscape.html">Model Landscape</a>
+        <a href="github-essentials.html">GitHub Essentials</a>
       </nav>
       <button class="reset-btn" id="resetBtn">Reset Progress</button>
     </div>

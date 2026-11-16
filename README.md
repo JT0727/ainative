@@ -7,7 +7,9 @@ A practical, self-paced curriculum that teaches business individual contributors
 ## What's inside
 
 - **21 modules in 5 phases** — AI Foundations, Productivity Acceleration, Business Operations, Advanced AI Workflows, and AI Strategy & Leadership.
-- **Bonus section: Agents In Practice** — a practical endcap on OpenClaw and other agent tools: what they do, where they help, where they add risk, and how to evaluate them.
+- **Bonus section: Agents In Practice** (8 lessons) — a practical endcap on OpenClaw and other agent tools: what they do, where they help, where they add risk, how to evaluate them, the 2026 proactive-agent wave (Muse, Grok Bot, Dots, Duet, Hermes), and agent harnesses.
+- **Bonus section: The 2026 Model Landscape** (3 lessons) — the GPT-6, Claude, and Gemini families and their tiers, open-weight versus closed models, and how to read a model release without the hype.
+- **Bonus section: GitHub For Non-Engineers** (3 lessons) — how GitHub works, how engineers use it every day (issues, pull requests, reviews, checks, releases), and how non-engineers participate.
 - **Reference pages** — a plain-English glossary, a prompt library, and a curated tools & resources page.
 
 ## Repository layout

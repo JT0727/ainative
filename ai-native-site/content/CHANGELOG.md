@@ -6,6 +6,11 @@
 - Glossary refreshed: foundation-model and multimodal examples now cite current models, and the context-window entry reflects the current ~1M-token frontier standard.
 - OpenClaw bonus section: "OpenClaw In Context" now covers the OpenClaw Foundation stewardship and the project's scale; "Safe First Experiments" now covers the 2026 ClawHub malicious-skills incidents as a supply-chain vetting lesson. Both lessons re-reviewed November 2026.
 - Added OpenClaw to the Tools & Resources page.
+- New bonus section "The 2026 Model Landscape" (3 lessons): the GPT-6 / Claude / Gemini 4 families and tier pattern, open-weight versus closed models (Kimi K3.1 Pro, gated models, deprecation risk), and a protocol for reading model releases.
+- New bonus section "GitHub For Non-Engineers" (3 lessons): repositories, commits, branches and forks; the daily loop of issues, pull requests, checks, and releases; and how non-engineers participate.
+- Agents bonus section expanded from 6 to 8 lessons: "The Proactive Agent Wave" (Muse, Grok Bot, Dots, Claude Duet, Hermes; triggers, hosting, credentials, the silent path) and "Harnesses: The Software Around The Model" (agent = model + harness, the six harness jobs, scaffold versus harness, benchmark and cost evidence).
+- Glossary: added Agent harness, Open-weight model, Proactive agent, and Pull request; refreshed the Reasoning model definition.
+- Site plumbing: new pages model-landscape.html and github-essentials.html, homepage bonus cards B2/B3, and course.js now maps each bonus section to its own page.
 
 ## March 2026
 
