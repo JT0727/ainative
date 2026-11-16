@@ -312,8 +312,8 @@
         renderRoleVariants(lesson.roleVariants) +
         '</div>' +
         '<div class="lesson-pager">' +
-        (lessonNumber > 1 ? '<button class="lesson-scroll-btn" onclick="CourseActions.scrollTo(' + (lessonNumber - 1) + ')">↑ Previous Lesson</button>' : '<span></span>') +
-        (!isLast ? '<button class="lesson-scroll-btn" onclick="CourseActions.scrollTo(' + (lessonNumber + 1) + ')">Next Lesson ↓</button>' : '<button class="lesson-scroll-btn" onclick="CourseActions.scrollTo(\'completion\')">View Progress ↓</button>') +
+        (lessonNumber > 1 ? '<button class="lesson-scroll-btn pager-prev" onclick="CourseActions.scrollTo(' + (lessonNumber - 1) + ')"><span class="pager-dir">← Previous Lesson</span><span class="pager-title">' + escapeHTML(lessons[lessonNumber - 2].title) + '</span></button>' : '<span></span>') +
+        (!isLast ? '<button class="lesson-scroll-btn pager-next" onclick="CourseActions.scrollTo(' + (lessonNumber + 1) + ')"><span class="pager-dir">Next Lesson →</span><span class="pager-title">' + escapeHTML(lessons[lessonNumber].title) + '</span></button>' : '<button class="lesson-scroll-btn pager-next" onclick="CourseActions.scrollTo(\'completion\')"><span class="pager-dir">Finish →</span><span class="pager-title">View Progress</span></button>') +
         '</div>' +
         '<button class="lesson-complete-btn' + (isDone ? ' done' : '') + '" data-lesson="' + idx + '" onclick="CourseActions.markComplete(this, ' + idx + ')">' +
         (isDone ? 'Completed' : 'Mark Complete') + '</button>' +
@@ -453,12 +453,18 @@
     if (nav) nav.textContent = done + '/' + lessonCount + ' lessons';
   }
 
+  function setModuleProgressLine(pct) {
+    var fill = document.querySelector('.scroll-progress-fill');
+    if (fill) fill.style.width = pct + '%';
+  }
+
   function updateActiveDot(activeIdx) {
     var dots = document.querySelectorAll('.lesson-dot-nav');
     dots.forEach(function (dot, i) {
       dot.classList.toggle('active', i === activeIdx);
     });
     currentLessonNumber = activeIdx + 1;
+    setModuleProgressLine(Math.round(((activeIdx + 1) / lessonCount) * 100));
     Progress.setLastVisited(scopeKind, scopeId, currentLessonNumber, getPagePath(currentLessonNumber));
   }
 
@@ -492,6 +498,7 @@
     sections.forEach(function (section) { section.classList.remove('active'); });
     var completion = document.getElementById('completion');
     if (completion) completion.classList.add('active');
+    setModuleProgressLine(100);
   }
 
   function showView(target) {
