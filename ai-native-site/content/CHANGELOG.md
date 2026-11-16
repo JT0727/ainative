@@ -11,6 +11,7 @@
 - Agents bonus section expanded from 6 to 8 lessons: "The Proactive Agent Wave" (Muse, Grok Bot, Dots, Claude Duet, Hermes; triggers, hosting, credentials, the silent path) and "Harnesses: The Software Around The Model" (agent = model + harness, the six harness jobs, scaffold versus harness, benchmark and cost evidence).
 - Glossary: added Agent harness, Open-weight model, Proactive agent, and Pull request; refreshed the Reasoning model definition.
 - Site plumbing: new pages model-landscape.html and github-essentials.html, homepage bonus cards B2/B3, and course.js now maps each bonus section to its own page.
+- Lesson layout rebuilt (all 24 course pages, via the shared course.js renderer): brief-first "60-Second Version" auto-derived from each lesson's concepts, meta chips (time / use-when / outcome), one lesson in focus at a time with dot + outline + hash navigation, sticky apply rail (exercise as a checklist, artifact card, watch-outs), role variants as a lens switcher instead of four stacked accordions, and an optional per-lesson visual (matrix on The New Model Map, flow on How Engineers Use GitHub Every Day). The worked-example block no longer renders — the program teaches by brief, visual, concepts, and application, not cases.
 
 ## March 2026
 

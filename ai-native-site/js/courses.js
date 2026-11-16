@@ -8823,6 +8823,19 @@ var BONUS_SECTIONS = {
           "scenario": "You requested a small change three days ago and have heard nothing.",
           "verification": "Confirm the change shipped by finding it in the next release notes, not by assuming merge means deployed."
         },
+        "visual": {
+          "type": "flow",
+          "title": "The Daily Loop",
+          "steps": [
+            "Issue — what & why",
+            "Branch — work happens",
+            "Pull request — review gate",
+            "Checks — machine verdict",
+            "Merge — enters main",
+            "Release — shipped record"
+          ],
+          "note": "Every engineering change you will ever wait on is sitting at one of these steps."
+        },
         "promptExample": {
           "title": "Starter prompt",
           "prompt": "Help me with this work task: Trace one real change end to end: find an issue, its pull request, the check results, and the release that shipped it.\n\nGoal:\nDescribe the path a change takes from an idea to a shipped release, and what each gate protects.\n\nUse this when:\nUse this when you are waiting on an engineering change and want to see where it actually is in the pipeline.\n\nImportant context:\n- Issue → what and why\n- Branch → the work happens here\n- Pull request → diff, discussion, approvals\n- Checks (CI / Actions) → the machine verdict\n\nPlease structure the response around:\n- Issues Are The Work Queue\n- Pull Requests Are The Review Gate\n- Automated Checks Run Before Humans Decide\n\nWorkflow requirements:\n- Start from a release note and pick one item.\n- Find the merged PR behind it.\n- Read the review discussion and the checks that ran.\n\nBefore you finish, include a verification checklist based on this rule:\nConfirm the change shipped by finding it in the next release notes, not by assuming merge means deployed.",
@@ -9021,6 +9034,88 @@ var BONUS_SECTIONS = {
           "result": "Same tools, better fit: cost and latency land where they actually buy something.",
           "scenario": "Your assistant offers four model choices and you need to draft a sensitive strategy memo, then summarize 200 pages of contracts.",
           "verification": "Re-run one representative task on two tiers and compare the outputs side by side before standardizing on either."
+        },
+        "visual": {
+          "type": "matrix",
+          "title": "The Map — November 2026",
+          "headers": [
+            "Tier",
+            "OpenAI",
+            "Anthropic",
+            "Google"
+          ],
+          "rows": [
+            {
+              "label": "Fast",
+              "cells": [
+                {
+                  "main": "Luna",
+                  "sub": "volume work"
+                },
+                {
+                  "main": "Haiku 5.5",
+                  "sub": "volume work"
+                },
+                {
+                  "main": "Hydrogen",
+                  "sub": "volume work"
+                }
+              ]
+            },
+            {
+              "label": "Workhorse",
+              "cells": [
+                {
+                  "main": "6.1 Terra · Sol",
+                  "sub": "everyday hard tasks"
+                },
+                {
+                  "main": "Sonnet 5.5",
+                  "sub": "everyday hard tasks"
+                },
+                {
+                  "main": "Argon",
+                  "sub": "everyday hard tasks"
+                }
+              ]
+            },
+            {
+              "label": "Flagship",
+              "cells": [
+                {
+                  "main": "GPT-6 Astra",
+                  "sub": "deep thinking"
+                },
+                {
+                  "main": "Fable 5.2",
+                  "sub": "Opus 5.5 just below"
+                },
+                {
+                  "main": "Carbon",
+                  "sub": "deep thinking"
+                }
+              ]
+            },
+            {
+              "label": "Gated",
+              "muted": true,
+              "cells": [
+                {
+                  "main": "GPT-6 Cyber",
+                  "sub": "vetted orgs only"
+                },
+                {
+                  "main": "Mythos",
+                  "sub": "vetted orgs only"
+                },
+                {
+                  "main": "—",
+                  "sub": ""
+                }
+              ]
+            }
+          ],
+          "note": "Structure is the durable part. Version numbers churn monthly; tiers don't."
         },
         "promptExample": {
           "title": "Starter prompt",
