@@ -6,6 +6,10 @@
   function init() {
     var nav = document.querySelector('.nav');
     var progressFill = document.querySelector('.scroll-progress-fill');
+    // On course pages the top line shows position within the module and is
+    // driven by course.js instead of page scroll.
+    var isCoursePage = document.body && (document.body.hasAttribute('data-module') || document.body.hasAttribute('data-bonus'));
+    if (isCoursePage) progressFill = null;
 
     if (!nav) return;
 
